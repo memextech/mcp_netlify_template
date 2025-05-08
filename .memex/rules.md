@@ -2,6 +2,8 @@
 
 This template provides a barebones implementation of a Model Context Protocol (MCP) server designed to be deployed to Netlify. The MCP server exposes tools and resources that can be used by AI assistants through the open MCP standard.
 
+Additionally, this template includes a FastAPI client that provides a REST API for interacting with the MCP server, making it easy to test and integrate with other applications.
+
 ## Project Structure
 
 ```
@@ -12,6 +14,12 @@ This template provides a barebones implementation of a Model Context Protocol (M
 │       └── simple-mcp.js    # Simple MCP implementation without external dependencies
 ├── public/                  # Static assets served by Netlify
 │   └── index.html           # Landing page with documentation
+├── mcp-client/              # FastAPI client for interacting with the MCP server
+│   ├── main.py              # FastAPI application
+│   ├── test_client.py       # Script to test the client
+│   ├── start.sh             # Script to start both server and client
+│   ├── requirements.txt     # Python dependencies
+│   └── README.md            # Client-specific documentation
 ├── .gitignore               # Git ignore file
 ├── netlify.toml             # Netlify configuration
 ├── package.json             # Node.js dependencies
@@ -40,6 +48,18 @@ Configures the Netlify deployment and sets up URL redirects to route `/mcp` to t
 
 A simple documentation page explaining what the MCP server does and how to use it.
 
+### 4. FastAPI Client (`mcp-client/main.py`)
+
+A REST API client built with FastAPI that provides a web interface for interacting with the MCP server. It includes endpoints for:
+
+- Getting server information
+- Listing available tools
+- Calling tools with parameters
+- Listing available resources
+- Reading resources
+
+The client includes comprehensive API documentation using Swagger UI.
+
 ## Getting Started
 
 ### Development Prerequisites
@@ -49,6 +69,8 @@ A simple documentation page explaining what the MCP server does and how to use i
 - Netlify CLI (for local development and deployment)
 
 ### Local Development
+
+#### MCP Server
 
 1. Install dependencies:
    ```
@@ -61,6 +83,34 @@ A simple documentation page explaining what the MCP server does and how to use i
    ```
    
 The MCP server will be available locally at `http://localhost:8888/mcp`
+
+#### MCP Client
+
+1. Navigate to the mcp-client directory:
+   ```
+   cd mcp-client
+   ```
+
+2. Install Python dependencies:
+   ```
+   pip install -r requirements.txt
+   ```
+
+3. Start the FastAPI server:
+   ```
+   uvicorn main:app --reload
+   ```
+
+The FastAPI client will be available at `http://localhost:8000` with API documentation at `http://localhost:8000/docs`
+
+#### Starting Both Server and Client
+
+For convenience, you can use the provided script to start both the MCP server and the client:
+
+```
+cd mcp-client
+./start.sh
+```
 
 ### Testing Your MCP Server
 

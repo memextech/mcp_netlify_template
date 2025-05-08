@@ -1,0 +1,48 @@
+card_image: ''
+created_at:
+  _nanoseconds: 444000000
+  _seconds: 1746709831
+creator_id: unknown
+deployment:
+  last_deployed: null
+  type: null
+  url: ''
+description: Get started with MCP using a pre-built template with out-of-the-box deployment
+  to Netlify
+domain: ''
+features:
+- ''
+getting_started_screen: false
+getting_started_screen_index: 0
+git:
+  branch: null
+  remote: null
+  url: ''
+hero_image: ''
+icon: ''
+is_published: false
+pills:
+- icon: ''
+  label: ''
+  prompt: ''
+project_id: XQICO1A67qRY6FMpeQNi
+published_at: null
+requirements:
+- description: ''
+  type: ''
+slug: ''
+storage:
+  compression_enabled: null
+  gcs_path: null
+  last_sync: null
+  max_file_size_mb: null
+  size_bytes: null
+title: Build and Deploy an MCP Server
+tools:
+- name: ''
+  role: ''
+  type: ''
+  version: ''
+updated_at:
+  _nanoseconds: 444000000
+  _seconds: 1746709831
