@@ -141,14 +141,19 @@ uvicorn main:app --reload
 
 This will start the FastAPI server at http://localhost:8001. You can access the API documentation at http://localhost:8001/docs.
 
-### Starting Both Server and Client
+### Managing the MCP Server and FastAPI Client
 
-For convenience, a startup script is provided that starts both the MCP server and the client:
+The template includes several scripts to manage both the MCP server and FastAPI client:
 
 ```bash
 cd mcp-client
-./start.sh
+./start.sh    # Start both services in the background
+./stop.sh     # Stop both services gracefully
+./check_status.sh  # Check if services are running and view logs
+./test_client.py   # Test the FastAPI client endpoints
 ```
+
+These scripts ensure processes keep running in the background even after you close your terminal, properly manage log files, and provide clear status information.
 
 ### Testing the Client
 

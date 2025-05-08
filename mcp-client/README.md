@@ -22,16 +22,46 @@ This is a FastAPI client for interacting with Model Context Protocol (MCP) serve
    pip install -r requirements.txt
    ```
 
-2. Configure the MCP server URL in the `.env` file:
+2. Configure the environment variables in the `.env` file:
    ```
+   # The URL of the MCP server to connect to
    MCP_SERVER_URL=http://localhost:8888/mcp
+   
+   # The base URL for the API client (used by test_client.py)
+   API_BASE=http://localhost:8001
    ```
    
-   Replace with your MCP server URL if it's different.
+   Replace these values with your actual URLs if they're different.
 
 ## Usage
 
-### Starting the Server
+### Managing Services
+
+The following scripts are provided to help manage the MCP server and FastAPI client:
+
+- **start.sh**: Starts both the Netlify MCP server and FastAPI client in the background
+  ```bash
+  ./start.sh
+  ```
+
+- **stop.sh**: Stops both services properly
+  ```bash
+  ./stop.sh
+  ```
+
+- **check_status.sh**: Checks the status of both services and displays logs
+  ```bash
+  ./check_status.sh
+  ```
+
+- **test_client.py**: Runs tests against the FastAPI client
+  ```bash
+  ./test_client.py
+  ```
+
+### Starting the Server Manually
+
+If you prefer to start the FastAPI client manually:
 
 ```bash
 uvicorn main:app --reload --port 8001
@@ -42,6 +72,16 @@ The API will be available at http://localhost:8001
 ### API Documentation
 
 Interactive API documentation is available at http://localhost:8001/docs
+
+### Troubleshooting
+
+If you encounter issues:
+
+1. Check if the ports are already in use (8001 for FastAPI, 8888 for Netlify)
+2. Verify both services are running with `./check_status.sh`
+3. Check the log files in the `.processes` directory
+4. Ensure your `.env` file has the correct URLs
+5. Try stopping and restarting both services with `./stop.sh` followed by `./start.sh`
 
 ### API Endpoints
 

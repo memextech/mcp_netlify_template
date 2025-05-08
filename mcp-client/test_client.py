@@ -13,7 +13,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # Default to localhost if API_BASE not set
-API_BASE = os.getenv("API_BASE", "http://localhost:8000")
+API_BASE = os.getenv("API_BASE", "http://localhost:8001")
 
 def pretty_print(data):
     """Print JSON data in a readable format."""

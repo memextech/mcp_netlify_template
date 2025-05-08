@@ -103,14 +103,54 @@ The MCP server will be available locally at `http://localhost:8888/mcp`
 
 The FastAPI client will be available at `http://localhost:8001` with API documentation at `http://localhost:8001/docs`
 
-#### Starting Both Server and Client
+#### Managing the MCP Server and FastAPI Client
 
-For convenience, you can use the provided script to start both the MCP server and the client:
+The template includes several scripts to manage both the MCP server and FastAPI client:
 
-```
+**Starting Services**:
+```bash
 cd mcp-client
 ./start.sh
 ```
+This script starts both services in the background using `nohup` to ensure they keep running even if your terminal session ends. PID files are stored in the `.processes` directory for management.
+
+**Checking Status**:
+```bash
+cd mcp-client
+./check_status.sh
+```
+Verifies if both services are running, checks their responsiveness, and shows the latest log entries.
+
+**Stopping Services**:
+```bash
+cd mcp-client
+./stop.sh
+```
+Gracefully stops both services and cleans up the PID files.
+
+**Running Tests**:
+```bash
+cd mcp-client
+./test_client.py
+```
+Executes a series of tests against the FastAPI client to verify everything is working.
+
+**Environment Variables**:
+
+The FastAPI client uses the following environment variables (configured in `.env`):
+- `MCP_SERVER_URL`: The URL of the MCP server (default: http://localhost:8888/mcp)
+- `API_BASE`: The base URL for the FastAPI client (default: http://localhost:8001)
+
+**Troubleshooting**:
+
+If you encounter issues with the services:
+1. Check if ports 8001 (FastAPI) and 8888 (Netlify) are already in use
+2. Examine the log files in `.processes/` directory
+3. Ensure you have the correct environment variables set
+4. Try stopping and restarting both services
+5. For specific service errors, check the respective logs:
+   - Netlify MCP Server: `.processes/netlify-dev.log`
+   - FastAPI Client: `.processes/fastapi.log`
 
 ### Testing Your MCP Server
 
