@@ -25,7 +25,11 @@ This is a minimal implementation of a Model Context Protocol (MCP) server design
    
 The MCP server will be available locally at http://localhost:8888/mcp
 
-### Testing with MCP Inspector
+### Testing Your MCP Server
+
+You can test your MCP server using either the MCP Inspector or directly with curl commands.
+
+#### Using MCP Inspector
 
 While the development server is running, you can test your MCP server using the MCP inspector:
 
@@ -34,6 +38,45 @@ npx @modelcontextprotocol/inspector npx mcp-remote@next http://localhost:8888/mc
 ```
 
 Then open http://localhost:6274/ in your browser to interact with the MCP inspector.
+
+#### Using curl
+
+You can also test the MCP server directly using curl commands:
+
+1. Initialize the MCP server:
+   ```
+   curl -X POST http://localhost:8888/mcp \
+     -H "Content-Type: application/json" \
+     -d '{"jsonrpc":"2.0","method":"mcp/init","params":{},"id":"1"}'
+   ```
+
+2. List available tools:
+   ```
+   curl -X POST http://localhost:8888/mcp \
+     -H "Content-Type: application/json" \
+     -d '{"jsonrpc":"2.0","method":"mcp/listTools","params":{},"id":"2"}'
+   ```
+
+3. Call a tool:
+   ```
+   curl -X POST http://localhost:8888/mcp \
+     -H "Content-Type: application/json" \
+     -d '{"jsonrpc":"2.0","method":"mcp/callTool","params":{"name":"run-analysis-report","args":{"days":5}},"id":"3"}'
+   ```
+
+4. List available resources:
+   ```
+   curl -X POST http://localhost:8888/mcp \
+     -H "Content-Type: application/json" \
+     -d '{"jsonrpc":"2.0","method":"mcp/listResources","params":{},"id":"4"}'
+   ```
+
+5. Read a resource:
+   ```
+   curl -X POST http://localhost:8888/mcp \
+     -H "Content-Type: application/json" \
+     -d '{"jsonrpc":"2.0","method":"mcp/readResource","params":{"uri":"docs://interpreting-reports"},"id":"5"}'
+   ```
 
 ## Deployment
 
