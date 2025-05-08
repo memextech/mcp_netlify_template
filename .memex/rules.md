@@ -101,7 +101,7 @@ The MCP server will be available locally at `http://localhost:8888/mcp`
    uvicorn main:app --reload
    ```
 
-The FastAPI client will be available at `http://localhost:8000` with API documentation at `http://localhost:8000/docs`
+The FastAPI client will be available at `http://localhost:8001` with API documentation at `http://localhost:8001/docs`
 
 #### Starting Both Server and Client
 
@@ -235,27 +235,42 @@ This option is recommended for first-time Netlify users or if you need to authen
 
 After deployment with either method, your MCP server will be available at `https://your-site-name.netlify.app/mcp`
 
-### Using with Claude Desktop
+### Using the FastAPI Client
 
-To use this MCP server with Claude Desktop:
+The template includes a FastAPI client that provides a user-friendly REST API interface for interacting with the MCP server:
 
-1. Go to Claude Desktop settings
-2. Enable the MCP Server configuration
-3. Edit the configuration file:
-   ```json
-   {
-     "mcpServers": {
-       "my-mcp": {
-         "command": "npx",
-         "args": [
-           "mcp-remote@next",
-           "https://your-site-name.netlify.app/mcp"
-         ]
-       }
-     }
-   }
+1. **Starting both the MCP server and FastAPI client**:
+   ```bash
+   cd mcp-client
+   ./start.sh
    ```
-4. Restart Claude Desktop
+   This script starts both the Netlify MCP server and the FastAPI client, then runs a quick test to verify everything is working.
+
+2. **Accessing the API documentation**:
+   Open `http://localhost:8001/docs` in your browser to use the interactive Swagger UI documentation.
+
+3. **API Endpoints**:
+   - `GET /server` - Get information about the MCP server
+   - `GET /tools` - List available tools
+   - `POST /tools/call` - Call a specific tool with parameters
+   - `GET /resources` - List available resources
+   - `POST /resources/read` - Read a specific resource
+
+4. **Example: Calling a tool via curl**:
+   ```bash
+   curl -X POST http://localhost:8001/tools/call \
+     -H "Content-Type: application/json" \
+     -d '{"name":"run-analysis-report","args":{"days":5}}'
+   ```
+
+5. **Example: Reading a resource via curl**:
+   ```bash
+   curl -X POST http://localhost:8001/resources/read \
+     -H "Content-Type: application/json" \
+     -d '{"uri":"docs://interpreting-reports"}'
+   ```
+
+The FastAPI client makes it easy to test and integrate the MCP server with other applications without needing to implement the MCP protocol directly.
 
 ## Extending the Template
 

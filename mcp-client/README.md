@@ -34,14 +34,14 @@ This is a FastAPI client for interacting with Model Context Protocol (MCP) serve
 ### Starting the Server
 
 ```bash
-uvicorn main:app --reload
+uvicorn main:app --reload --port 8001
 ```
 
-The API will be available at http://localhost:8000
+The API will be available at http://localhost:8001
 
 ### API Documentation
 
-Interactive API documentation is available at http://localhost:8000/docs
+Interactive API documentation is available at http://localhost:8001/docs
 
 ### API Endpoints
 

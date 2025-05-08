@@ -139,7 +139,7 @@ pip install -r requirements.txt
 uvicorn main:app --reload
 ```
 
-This will start the FastAPI server at http://localhost:8000. You can access the API documentation at http://localhost:8000/docs.
+This will start the FastAPI server at http://localhost:8001. You can access the API documentation at http://localhost:8001/docs.
 
 ### Starting Both Server and Client
 
