@@ -1,11 +1,9 @@
-// mcp-server.js - ES Module format for Netlify serverless function
-const { StreamableHTTPServerTransport } = require("@modelcontextprotocol/sdk/dist/server/streamableHttp.js");
+// mcp-server.js - CommonJS format for Netlify serverless function
+const { StreamableHTTPServerTransport } = require("@modelcontextprotocol/sdk").server.StreamableHTTPServerTransport;
 const { toFetchResponse, toReqRes } = require("fetch-to-node");
 const { z } = require("zod");
-const { McpServer } = require("@modelcontextprotocol/sdk/dist/server/mcp.js");
-const {
-  JSONRPCError
-} = require("@modelcontextprotocol/sdk/dist/types.js");
+const { McpServer } = require("@modelcontextprotocol/sdk").server.McpServer;
+const { JSONRPCError } = require("@modelcontextprotocol/sdk").types;
 
 // Netlify serverless function handler which handles all inbound requests
 exports.handler = async (event, context) => {

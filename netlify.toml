@@ -4,6 +4,12 @@
 
 [[redirects]]
   from = "/mcp"
-  to = "/.netlify/functions/mcp-server"
+  to = "/.netlify/functions/simple-mcp"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/mcp/*"
+  to = "/.netlify/functions/simple-mcp"
   status = 200
   force = true
