@@ -1,8 +1,5 @@
 # Barebones MCP Server for Netlify
 
-**Live Demo**: [https://netlify-mcp-server-1746701427.netlify.app](https://netlify-mcp-server-1746701427.netlify.app)
-**MCP Endpoint**: [https://netlify-mcp-server-1746701427.netlify.app/mcp](https://netlify-mcp-server-1746701427.netlify.app/mcp)
-
 This is a minimal implementation of a Model Context Protocol (MCP) server designed to be deployed to Netlify. The MCP server exposes tools and resources that can be used by AI assistants through the Model Context Protocol.
 
 ## Features
@@ -34,16 +31,16 @@ You can test your MCP server using either the MCP Inspector or directly with cur
 
 #### Using MCP Inspector
 
-You can test your MCP server using the MCP inspector with either the local development server or the deployed version:
+While the development server is running, you can test your MCP server using the MCP inspector:
 
-**Local development:**
 ```
 npx @modelcontextprotocol/inspector npx mcp-remote@next http://localhost:8888/mcp
 ```
 
-**Deployed version:**
+After deployment, you can test your deployed version:
+
 ```
-npx @modelcontextprotocol/inspector npx mcp-remote@next https://netlify-mcp-server-1746701427.netlify.app/mcp
+npx @modelcontextprotocol/inspector npx mcp-remote@next https://your-site-name.netlify.app/mcp
 ```
 
 Then open http://localhost:6274/ in your browser to interact with the MCP inspector.
@@ -113,7 +110,7 @@ To use this MCP server with Claude Desktop:
          "command": "npx",
          "args": [
            "mcp-remote@next",
-           "https://netlify-mcp-server-1746701427.netlify.app/mcp"
+           "https://your-site-name.netlify.app/mcp"
          ]
        }
      }
