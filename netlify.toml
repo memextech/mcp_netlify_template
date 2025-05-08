@@ -1,0 +1,9 @@
+[build]
+  publish = "public"
+  functions = "netlify/functions"
+
+[[redirects]]
+  from = "/mcp"
+  to = "/.netlify/functions/mcp-server"
+  status = 200
+  force = true
