@@ -117,40 +117,73 @@ You can test the MCP server directly using curl commands:
 
 ### Deploying to Netlify
 
-#### Option 1: Using Netlify CLI
+#### Option 1: Non-interactive Deployment
+
+This option is best if you already have Netlify configured on your machine:
 
 1. Install Netlify CLI globally (if not already installed):
-   ```
+   ```bash
    npm install -g netlify-cli
    ```
 
-2. Login to Netlify:
-   ```
+2. Login to Netlify (if not already logged in):
+   ```bash
    netlify login
    ```
 
-3. Create a new site:
-   ```
-   netlify sites:create --name your-site-name
+3. Find your account slug:
+   ```bash
+   netlify status
+   # Look for "Teams:" in the output
    ```
 
-4. Deploy the site:
+4. Create a new site non-interactively:
+   ```bash
+   netlify sites:create --account-slug YOUR-ACCOUNT-SLUG --name your-mcp-server-name
    ```
+
+5. Deploy the site:
+   ```bash
    netlify deploy --prod
    ```
 
-#### Option 2: Using Netlify UI
+#### Option 2: Interactive Deployment
 
-1. Push your repository to GitHub, GitLab, or Bitbucket
-2. Log in to the Netlify web interface
-3. Click "New site from Git"
-4. Connect your repository
-5. Configure the build settings:
-   - Build command: leave empty (no build required)
-   - Publish directory: `public`
-6. Click "Deploy site"
+This option is recommended for first-time Netlify users or if you need to authenticate with Netlify:
 
-After deployment, your MCP server will be available at `https://your-site-name.netlify.app/mcp`
+1. Install Netlify CLI globally (if not already installed):
+   ```bash
+   npm install -g netlify-cli
+   ```
+
+2. Open a new terminal window to handle the interactive authentication:
+
+   **macOS**:
+   ```bash
+   osascript -e 'tell application "Terminal" to do script "cd \"$(pwd)\" && netlify login"'
+   ```
+
+   **Windows**:
+   ```bash
+   start powershell -NoExit -Command "cd \"$(pwd)\"; netlify login"
+   ```
+
+   **Linux (Ubuntu)**:
+   ```bash
+   gnome-terminal -- bash -c "cd \"$(pwd)\" && netlify login; exec bash"
+   ```
+
+3. After authenticating, in the new terminal window, create a site interactively:
+   ```bash
+   netlify sites:create
+   ```
+
+4. Return to your original terminal and deploy the site:
+   ```bash
+   netlify deploy --prod
+   ```
+
+After deployment with either method, your MCP server will be available at `https://your-site-name.netlify.app/mcp`
 
 ### Using with Claude Desktop
 
